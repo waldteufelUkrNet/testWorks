@@ -1,0 +1,26 @@
+@import "scss-snippets/reset";
+@import "scss-snippets/wMobileHeightFix";
+@import "scss-snippets/fonts";
+@import "scss-snippets/general";
+
+.linksWrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
+  margin: 100px 300px;
+  padding: 50px;
+  border-radius: 6px;
+}
+.linksWrapper a {
+  display: block;
+  margin-bottom: 50px;
+  padding: 20px;
+  border: 1px solid steelblue;
+  border-radius: 6px;
+  &:hover {
+    background-color: lightskyblue;
+  }
+  &:last-of-type {
+    margin-bottom: 0px;
+  }
+}
