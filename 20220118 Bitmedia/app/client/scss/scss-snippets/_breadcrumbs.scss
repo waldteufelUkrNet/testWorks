@@ -1,0 +1,24 @@
+.breadcrumbs {
+  font-size: 16px;
+  &__link {
+    color: #CCCCCC;
+    position: relative;
+    margin-right: 20px;
+    &:after {
+      display: block;
+      content: '›';
+      font-size: 1.5em;
+      position: absolute;
+      top: 50%;
+      right: -13px;
+      transform: translate(0, -50%);
+    }
+    &:hover {
+      color: #3A80BA;
+      text-decoration: underline;
+    }
+  }
+  &__page {
+    color: #3A80BA;
+  }
+}

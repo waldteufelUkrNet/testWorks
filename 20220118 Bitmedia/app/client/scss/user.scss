@@ -1,0 +1,36 @@
+@import "scss-snippets/reset";
+@import "scss-snippets/wMobileHeightFix";
+@import "scss-snippets/fonts";
+@import "scss-snippets/general";
+@import "scss-snippets/breadcrumbs";
+
+body {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.main {
+  min-height: calc(100% - 72px);
+  padding-top: 20px;
+  padding-bottom: calc(117px + 20px);
+   @media (min-width: 600px) {
+    padding-bottom: calc(57px + 20px);
+  }
+  &__inner {
+    max-width: 1220px;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+  h1 {
+    color: #1A1A1A;
+    font: 32px bold;
+    padding: 25px 0 15px 0;
+  }
+}
+
+.footer {
+  margin-top: -117px;
+   @media (min-width: 600px) {
+    margin-top: -57px;
+  }
+}

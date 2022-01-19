@@ -4,7 +4,9 @@
   "description": "bitmedia",
   "main": "index.js",
   "scripts": {
-    "start:client": "gulp default"
+    "start:client": "gulp default",
+    "build": "gulp build",
+    "start:server": "nodemon xxx"
   },
   "author": "waldteufel",
   "license": "ISC",
@@ -19,6 +21,7 @@
     "gulp-autoprefixer": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-csso": "^4.0.1",
+    "gulp-htmlmin": "^5.0.1",
     "gulp-imagemin": "^8.0.0",
     "gulp-notify": "^4.0.0",
     "gulp-pug": "^5.0.0",
@@ -26,6 +29,16 @@
     "gulp-sass": "^5.1.0",
     "gulp-uglify-es": "^3.0.0",
     "nodemon": "^2.0.15",
+    "pug-lint": "^2.6.0",
     "sass": "^1.48.0"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "^4.17.2",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pug": "^3.0.2"
   }
 }

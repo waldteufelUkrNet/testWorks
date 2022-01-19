@@ -1,8 +1,20 @@
 doctype
-html
+html.wjs-MobileHeightFix
   head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title User
+    title List
+    link(rel="stylesheet" href="../css/user.css")
   body
-    .linksWrapper
+    include ../modules/header/header.pug
+
+    main.main
+      .main__inner
+        .breadcrumbs
+          a.breadcrumbs__link(href="index.html") Main page
+          a.breadcrumbs__link(href="usersList.html") User statistic
+          span.breadcrumbs__page Samuel Frost
+
+        h1 Samuel Frost
+
+    include ../modules/footer/footer.pug

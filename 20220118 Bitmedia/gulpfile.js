@@ -14,13 +14,14 @@
         autopre = require('gulp-autoprefixer'),
         concat  = require('gulp-concat'), // ??? а css?
         csso    = require('gulp-csso'),
+        htmlmin = require('gulp-htmlmin'),
         notify  = require('gulp-notify'),
         pug     = require('gulp-pug'),
         scss    = require('gulp-sass')(require('sass')),
         uglify  = require('gulp-uglify-es').default;
 /* ↑↑↑ /VARIABLES ↑↑↑ */
 ////////////////////////////////////////////////////////////////////////////////
-/* ↓↓↓ TASKS (DEVELOPMENT) ↓↓↓ */
+/* ↓↓↓ TASKS (FRONTEND DEVELOPMENT) ↓↓↓ */
   // server for live reload
   function startBrowserSync() {
     bs.init({
@@ -61,7 +62,25 @@
   }
   module.exports.convertPug = convertPug;
 
-  // scss -> css
+  // modules: scss -> css
+  function convertSCSSModules() {
+    return src('app/client/modules/*/*.scss')
+           .pipe( scss({outputStyle: 'expanded'}) ) // nested expanded compact compressed
+           .on('error', notify.onError({
+              message : 'Error: <%= error.message %>',
+              title   : 'SASS error'
+            }))
+           .pipe (autopre ({overrideBrowserslist: ['last 10 version'], grid: 'autoplace'}) )
+           .on('error', notify.onError({
+              message : 'Error: <%= error.message %>',
+              title   : 'Autoprefixer error'
+            }))
+           .pipe( dest('app/client/modules/') )
+           .pipe( bs.stream() );
+  }
+  module.exports.convertSCSSModules = convertSCSSModules;
+
+  // pages: scss -> css
   function convertSCSS() {
     return src('app/client/scss/*.scss')
            .pipe( scss({outputStyle: 'expanded'}) ) // nested expanded compact compressed
@@ -82,14 +101,36 @@
   // watching & live reload
   function startWatch(){
     watch(['app/client/workpage.pug'], convertWorkPage);
-    watch(['app/client/pages/*.pug'], convertPug);
+    watch(['app/client/pages/*.pug', 'app/client/modules/*/*.pug', 'app/client/modules/*/*.css'], convertPug);
+    watch(['app/client/modules/*/*.scss'], convertSCSSModules);
     watch(['app/client/scss/*.scss'], convertSCSS);
     watch(['app/client/pages/*.html', 'app/client/workpage.html']).on('change',  bs.reload);
   }
   module.exports.startWatch = startWatch;
 
-  module.exports.default = series(convertSCSS, convertPug, convertWorkPage, parallel(startBrowserSync, startWatch));
-/* ↑↑↑ /TASKS (DEVELOPMENT) ↑↑↑ */
+  // чищення каталогу app/server/static
+  function cleanStatic() {
+    return del('app/server/static');
+  }
+  module.exports.cleanStatic = cleanStatic;
+
+  function copyFiles(done) {
+    src('app/client/fonts/**/*').pipe( dest('app/server/static/fonts/') );
+    src('app/client/css/**/*').pipe( csso() ).pipe( dest('app/server/static/css/') );
+    src('app/client/js/**/*').pipe( uglify() ).pipe( dest('app/server/static/js/') );
+    src('app/client/js-libs/**/*').pipe( uglify() ).pipe( dest('app/server/static/js-libs/') );
+    src('app/client/pages/**/*.html').pipe( htmlmin({ collapseWhitespace: true, minifyCSS: true, minifyJS: true }) ).pipe( dest('app/server/static/pages/') );
+
+    // як оптимізувати картинки?
+    src('app/client/img/**/*').pipe( dest('app/server/static/img/') );
+
+    done();
+  }
+  module.exports.copyFiles = copyFiles;
+
+  module.exports.default = series(convertSCSSModules, convertSCSS, convertPug, convertWorkPage, parallel(startBrowserSync, startWatch));
+  module.exports.build = series( cleanStatic, copyFiles);
+/* ↑↑↑ /TASKS (FRONTEND DEVELOPMENT) ↑↑↑ */
 ////////////////////////////////////////////////////////////////////////////////
 /* ↓↓↓ TASKS (PRODUCTION) ↓↓↓ */
   // function convertServerJS() {
