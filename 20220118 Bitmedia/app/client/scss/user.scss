@@ -21,11 +21,20 @@ body {
     padding: 0 20px;
     margin: 0 auto;
   }
-  h1 {
-    color: #1A1A1A;
-    font: 32px bold;
+  .h1AndDadepickerWrapper {
     padding: 25px 0 15px 0;
+    display: flex;
+    justify-content: space-between;
+    h1 {
+      color: #1A1A1A;
+      font: 32px bold;
+    }
   }
+}
+
+.datepicker {
+  border: 3px dotted red;
+  margin-left: auto;
 }
 
 .footer {

@@ -15,7 +15,7 @@
                              .querySelector('td')
                              .innerHTML;
       if(id) {
-        // go to users page
+        // go to users page (пример роута /user/:id)
       }
     }
   }

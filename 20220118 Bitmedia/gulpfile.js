@@ -117,6 +117,7 @@
   function copyFiles(done) {
     src('app/client/fonts/**/*').pipe( dest('app/server/static/fonts/') );
     src('app/client/css/**/*').pipe( csso() ).pipe( dest('app/server/static/css/') );
+    src('app/client/css-libs/**/*').pipe( csso() ).pipe( dest('app/server/static/css-libs/') );
     src('app/client/js/**/*').pipe( uglify() ).pipe( dest('app/server/static/js/') );
     src('app/client/js-libs/**/*').pipe( uglify() ).pipe( dest('app/server/static/js-libs/') );
     src('app/client/pages/**/*.html').pipe( htmlmin({ collapseWhitespace: true, minifyCSS: true, minifyJS: true }) ).pipe( dest('app/server/static/pages/') );

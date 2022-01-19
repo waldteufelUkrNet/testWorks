@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List</title>
+    <!-- libs-->
+    <link rel="stylesheet" href="../css-libs/jquery-ui.css">
+    <link rel="stylesheet" href="../css-libs/jquery-ui.structure.css">
+    <link rel="stylesheet" href="../css-libs/jquery-ui.theme.css">
+    <script defer src="../js-libs/jquery.js"></script>
+    <script defer src="../js-libs/jquery-ui.js"></script>
+    <!-- own scripts & styles-->
     <link rel="stylesheet" href="../css/user.css">
+    <script defer src="../js/user.js"></script>
   </head>
   <body>
+    <!-- ↓↓↓ MODULE: HEADER ↓↓↓-->
     <style>.header {
   height: 72px;
   background-color: #3A80BA;
@@ -28,12 +37,19 @@
         <div class="header__logo">AppCo</div>
       </div>
     </div>
+    <!-- ↑↑↑ /MODULE: HEADER ↑↑↑-->
     <main class="main">
       <div class="main__inner">
         <div class="breadcrumbs"><a class="breadcrumbs__link" href="index.html">Main page</a><a class="breadcrumbs__link" href="usersList.html">User statistic</a><span class="breadcrumbs__page">Samuel Frost</span></div>
-        <h1>Samuel Frost</h1>
+        <div class="h1AndDadepickerWrapper">
+          <h1>Samuel Frost</h1>
+          <div class="datepicker"><span class="datepicker__text">Select date range</span>
+            <input type="text" id="datepicker">
+          </div>
+        </div>
       </div>
     </main>
+    <!-- ↓↓↓ MODULE: FOOTER ↓↓↓-->
     <style>.footer {
   height: 117px;
   background-color: #1C3B55;
@@ -88,5 +104,6 @@
         <div class="footer__rights">Copyrights © 2019.</div>
       </div>
     </div>
+    <!-- ↑↑↑ /MODULE: FOOTER ↑↑↑-->
   </body>
 </html>

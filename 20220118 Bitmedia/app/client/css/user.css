@@ -142,10 +142,23 @@ body {
   padding: 0 20px;
   margin: 0 auto;
 }
-.main h1 {
+.main .h1AndDadepickerWrapper {
+  padding: 25px 0 15px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.main .h1AndDadepickerWrapper h1 {
   color: #1A1A1A;
   font: 32px bold;
-  padding: 25px 0 15px 0;
+}
+
+.datepicker {
+  border: 3px dotted red;
+  margin-left: auto;
 }
 
 .footer {
