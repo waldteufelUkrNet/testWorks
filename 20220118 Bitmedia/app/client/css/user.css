@@ -156,9 +156,9 @@ body {
   font: 32px bold;
 }
 
-.datepicker {
-  border: 3px dotted red;
+.datepickerWrapper {
   margin-left: auto;
+  margin-top: 2px;
 }
 
 .footer {

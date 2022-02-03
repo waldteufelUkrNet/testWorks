@@ -12,11 +12,12 @@
   const bs      = require('browser-sync').create(),
         del     = require('del'),
         autopre = require('gulp-autoprefixer'),
-        concat  = require('gulp-concat'), // ??? а css?
+        // concat  = require('gulp-concat'), // ??? а css?
         csso    = require('gulp-csso'),
         htmlmin = require('gulp-htmlmin'),
         notify  = require('gulp-notify'),
         pug     = require('gulp-pug'),
+        rename  = require('gulp-rename'),
         scss    = require('gulp-sass')(require('sass')),
         uglify  = require('gulp-uglify-es').default;
 /* ↑↑↑ /VARIABLES ↑↑↑ */
@@ -65,7 +66,7 @@
   // modules: scss -> css
   function convertSCSSModules() {
     return src('app/client/modules/*/*.scss')
-           .pipe( scss({outputStyle: 'expanded'}) ) // nested expanded compact compressed
+           .pipe( scss({outputStyle: 'compressed'}) ) // nested expanded compact compressed
            .on('error', notify.onError({
               message : 'Error: <%= error.message %>',
               title   : 'SASS error'
@@ -98,17 +99,35 @@
   }
   module.exports.convertSCSS = convertSCSS;
 
+  // modules: js -> min.js
+  function minimizeJSModules() {
+    return src(['app/client/modules/*/*.js', '!app/client/modules/*/*.min.js'])
+           // .pipe( uglify() )
+           .pipe( rename( function(path){
+              path.basename += '.min';
+           } ) )
+           .pipe( dest('app/client/modules/') );
+  }
+  module.exports.minimizeJSModules = minimizeJSModules;
+
   // watching & live reload
   function startWatch(){
     watch(['app/client/workpage.pug'], convertWorkPage);
-    watch(['app/client/pages/*.pug', 'app/client/modules/*/*.pug', 'app/client/modules/*/*.css'], convertPug);
+    watch(['app/client/pages/*.pug', 'app/client/modules/*/*.pug', 'app/client/modules/*/*.css', 'app/client/modules/*/*.js'], convertPug);
     watch(['app/client/modules/*/*.scss'], convertSCSSModules);
+    watch(['app/client/modules/*/*.js', '!app/client/modules/*/*.min.js'], minimizeJSModules, bs.reload );
+    watch(['app/client/js/*.js'], bs.reload );
     watch(['app/client/scss/*.scss'], convertSCSS);
     watch(['app/client/pages/*.html', 'app/client/workpage.html']).on('change',  bs.reload);
   }
   module.exports.startWatch = startWatch;
 
-  // чищення каталогу app/server/static
+  function startWatchClientJSForServer() {
+    watch(['app/client/js/*.js'], copyJSFiles );
+  }
+  module.exports.startWatchClientJSForServer = startWatchClientJSForServer;
+
+  // чищення каталогу app/server/static (статичні файли)
   function cleanStatic() {
     return del('app/server/static');
   }
@@ -118,9 +137,16 @@
     src('app/client/fonts/**/*').pipe( dest('app/server/static/fonts/') );
     src('app/client/css/**/*').pipe( csso() ).pipe( dest('app/server/static/css/') );
     src('app/client/css-libs/**/*').pipe( csso() ).pipe( dest('app/server/static/css-libs/') );
-    src('app/client/js/**/*').pipe( uglify() ).pipe( dest('app/server/static/js/') );
+    // src('app/client/js/**/*').pipe( uglify() ).pipe( dest('app/server/static/js/') );
+    src('app/client/js/**/*').pipe( dest('app/server/static/js/') );
     src('app/client/js-libs/**/*').pipe( uglify() ).pipe( dest('app/server/static/js-libs/') );
-    src('app/client/pages/**/*.html').pipe( htmlmin({ collapseWhitespace: true, minifyCSS: true, minifyJS: true }) ).pipe( dest('app/server/static/pages/') );
+    src('app/client/pages/**/*.html').pipe( htmlmin({
+      collapseWhitespace: true,
+      minifyCSS: true,
+      minifyJS: true,
+      processConditionalComments: true,
+      removeComments: true,
+    }) ).pipe( dest('app/server/static/pages/') );
 
     // як оптимізувати картинки?
     src('app/client/img/**/*').pipe( dest('app/server/static/img/') );
@@ -129,7 +155,14 @@
   }
   module.exports.copyFiles = copyFiles;
 
-  module.exports.default = series(convertSCSSModules, convertSCSS, convertPug, convertWorkPage, parallel(startBrowserSync, startWatch));
+  function copyJSFiles(done) {
+    // src('app/client/js/**/*').pipe( uglify() ).pipe( dest('app/server/static/js/') );
+    src('app/client/js/**/*').pipe( dest('app/server/static/js/') );
+    done();
+  }
+  module.exports.copyJSFiles = copyJSFiles;
+
+  module.exports.default = series(convertSCSSModules, convertSCSS, minimizeJSModules, convertPug, convertWorkPage, parallel(startBrowserSync, startWatch));
   module.exports.build = series( cleanStatic, copyFiles);
 /* ↑↑↑ /TASKS (FRONTEND DEVELOPMENT) ↑↑↑ */
 ////////////////////////////////////////////////////////////////////////////////

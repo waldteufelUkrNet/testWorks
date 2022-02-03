@@ -4,29 +4,22 @@ html.wjs-MobileHeightFix
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title List
-    // libs
-    link(rel="stylesheet" href="../css-libs/jquery-ui.css")
-    link(rel="stylesheet" href="../css-libs/jquery-ui.structure.css")
-    link(rel="stylesheet" href="../css-libs/jquery-ui.theme.css")
-    script(defer src="../js-libs/jquery.js")
-    script(defer src="../js-libs/jquery-ui.js")
-    // own scripts & styles
     link(rel="stylesheet" href="../css/user.css")
-    script(defer src="../js/user.js")
   body
     include ../modules/header/header.pug
- 
+
     main.main
       .main__inner
         .breadcrumbs
           a.breadcrumbs__link(href="index.html") Main page
           a.breadcrumbs__link(href="usersList.html") User statistic
-          span.breadcrumbs__page Samuel Frost
+          span.breadcrumbs__page
 
         .h1AndDadepickerWrapper
-          h1 Samuel Frost
-          .datepicker
-            span.datepicker__text Select date range
-            input(type="text" id="datepicker")
+          h1
+          .datepickerWrapper
+            include ../modules/datepicker/datepicker.pug
 
     include ../modules/footer/footer.pug
+
+    script(defer src="../js/user.js")
