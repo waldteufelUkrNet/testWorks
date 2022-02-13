@@ -97,7 +97,6 @@
 
     if ( document.querySelector('.datepicker__calender_active') ) {
       // now it's open, build calender
-      console.log('build calender');
       const startValue     = datepicker.dataset.startvalue,
             finishValue    = datepicker.dataset.finishvalue,
             startDate      = new Date(startValue),

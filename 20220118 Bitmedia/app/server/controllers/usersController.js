@@ -5,8 +5,10 @@ module.exports.getUsers = async (req, res) => {
   const ascedPage    = req.body.page,
         usersPerPage = req.body.amount;
 
-  const limit  = usersPerPage,
-        offset = ascedPage*limit - limit;
+  let limit  = usersPerPage,
+      offset = ascedPage*limit - limit;
+
+  if (limit && limit > 50) limit = 50;
 
   const data = await User.findAll({offset, limit, raw: true});
 
@@ -23,9 +25,19 @@ module.exports.getUsers = async (req, res) => {
 };
 
 module.exports.getUserData = async (req, res) => {
-  const userID    = req.body.userID,
+  let userID    = req.body.userID,
         startDate = req.body.startDate,
         endDate   = req.body.endDate;
+
+  if( !(/^\d{4}-\d{2}-\d{2}$/).test(endDate)
+      || !(/^\d{4}-\d{2}-\d{2}$/).test(startDate) ) {
+    let sendObj = {
+      status: 400,
+      message: 'not valid data'
+    };
+    res.status(400).json(sendObj);
+    return;
+  }
 
   const user = await User.findByPk(userID);
   const data = await user.getUserstatistics({where: {
@@ -47,7 +59,6 @@ module.exports.getUserData = async (req, res) => {
   };
 
   res.status(200).json(responseObj);
-
 };
 
 async function getClicksAndViews(userID) {

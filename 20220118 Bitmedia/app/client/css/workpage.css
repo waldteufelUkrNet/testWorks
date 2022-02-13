@@ -72,7 +72,7 @@ html.wjs-MobileHeightFix body {
   src: url(../fonts/MontserratRegular.otf);
 }
 @font-face {
-  font-family: bold;
+  font-family: mbold;
   src: url(../fonts/MontserratBold.otf);
 }
 * {

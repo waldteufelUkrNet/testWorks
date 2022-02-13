@@ -4,12 +4,9 @@
 @import "scss-snippets/general";
 @import "scss-snippets/breadcrumbs";
 
-body {
+.main {
   max-width: 1440px;
   margin: 0 auto;
-}
-
-.main {
   min-height: calc(100% - 72px);
   padding-top: 20px;
   padding-bottom: calc(117px + 20px);
@@ -27,15 +24,29 @@ body {
     justify-content: space-between;
     h1 {
       color: #1A1A1A;
-      font: 32px bold;
+      font: 32px mbold;
     }
   }
 }
 
 .datepickerWrapper {
-  // border: 1px dotted red;
   margin-left: auto;
   margin-top: 2px;
+}
+
+.graphicWrapper {
+  min-height: 366px;
+  margin-bottom: 20px;
+}
+
+.graphicName {
+  color: #1A1A1A;
+  font: 24px mbold;
+  padding: 12px 0 20px 7px;
+}
+
+.graphic {
+  min-height: 299px;
 }
 
 .footer {

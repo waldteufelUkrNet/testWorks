@@ -73,7 +73,7 @@ html.wjs-MobileHeightFix body {
   src: url(../fonts/MontserratRegular.otf);
 }
 @font-face {
-  font-family: bold;
+  font-family: mbold;
   src: url(../fonts/MontserratBold.otf);
 }
 * {
@@ -122,12 +122,9 @@ body {
   color: #3A80BA;
 }
 
-body {
+.main {
   max-width: 1440px;
   margin: 0 auto;
-}
-
-.main {
   min-height: calc(100% - 72px);
   padding-top: 20px;
   padding-bottom: 137px;
@@ -153,12 +150,27 @@ body {
 }
 .main .h1AndDadepickerWrapper h1 {
   color: #1A1A1A;
-  font: 32px bold;
+  font: 32px mbold;
 }
 
 .datepickerWrapper {
   margin-left: auto;
   margin-top: 2px;
+}
+
+.graphicWrapper {
+  min-height: 366px;
+  margin-bottom: 20px;
+}
+
+.graphicName {
+  color: #1A1A1A;
+  font: 24px mbold;
+  padding: 12px 0 20px 7px;
+}
+
+.graphic {
+  min-height: 299px;
 }
 
 .footer {

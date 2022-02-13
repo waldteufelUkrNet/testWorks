@@ -164,6 +164,7 @@
 
   module.exports.default = series(convertSCSSModules, convertSCSS, minimizeJSModules, convertPug, convertWorkPage, parallel(startBrowserSync, startWatch));
   module.exports.build = series( cleanStatic, copyFiles);
+  module.exports.buildForDev = series( cleanStatic, convertSCSSModules, convertSCSS, minimizeJSModules, convertPug, convertWorkPage,copyFiles);
 /* ↑↑↑ /TASKS (FRONTEND DEVELOPMENT) ↑↑↑ */
 ////////////////////////////////////////////////////////////////////////////////
 /* ↓↓↓ TASKS (PRODUCTION) ↓↓↓ */

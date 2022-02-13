@@ -3,7 +3,7 @@ html.wjs-MobileHeightFix
   head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title List
+    title User
     link(rel="stylesheet" href="../css/user.css")
   body
     include ../modules/header/header.pug
@@ -19,7 +19,14 @@ html.wjs-MobileHeightFix
           h1
           .datepickerWrapper
             include ../modules/datepicker/datepicker.pug
+        .graphicWrapper
+          h3.graphicName Clicks
+          .graphic#clicksGraphic
+        .graphicWrapper
+          h3.graphicName Vievs
+          .graphic#viewsGraphic
 
     include ../modules/footer/footer.pug
 
+    script(defer src="../js-libs/anychart-base.min.js")
     script(defer src="../js/user.js")

@@ -4,12 +4,9 @@
 @import "scss-snippets/general";
 @import "scss-snippets/breadcrumbs";
 
-body {
+.main {
   max-width: 1440px;
   margin: 0 auto;
-}
-
-.main {
   min-height: calc(100% - 72px);
   padding-top: 20px;
   padding-bottom: calc(117px + 20px);
@@ -23,7 +20,7 @@ body {
   }
   h1 {
     color: #1A1A1A;
-    font: 32px bold;
+    font: 32px mbold;
     padding: 25px 0 15px 0;
   }
 }

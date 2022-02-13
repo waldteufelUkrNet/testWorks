@@ -6,16 +6,16 @@
   "scripts": {
     "start:client": "gulp default",
     "build": "gulp build",
+    "buildForDev": "gulp buildForDev",
     "clientJS": "gulp startWatchClientJSForServer",
     "start:server": "nodemon app/server/app.js",
-    "start:dev": "npm-run-all -p clientJS start:server"
+    "start:dev": "npm run buildForDev && npm-run-all -p clientJS start:server"
   },
   "author": "waldteufel",
   "license": "ISC",
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",
     "browser-sync": "^2.27.7",
-    "debug": "^3.2.7",
     "del": "^6.0.0",
     "eslint": "^8.7.0",
     "eslint-plugin-node": "^11.1.0",

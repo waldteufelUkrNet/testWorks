@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List</title>
+    <title>User</title>
     <link rel="stylesheet" href="../css/user.css">
   </head>
   <body>
@@ -236,9 +236,9 @@
           finishDateStr  = `${finishYear}-${finishMonth+1}-${finishDay}`,
           fulldateString = `${startMonthStr} ${startDay}, ${startYear} - ${finishMonthStr} ${finishDay}, ${finishYear}`;
 
-  datepicker.querySelector('.datepicker__input').value = fulldateString;
-  datepicker.setAttribute('data-startvalue', startDateStr);
-  datepicker.setAttribute('data-finishvalue', finishDateStr);
+    datepicker.querySelector('.datepicker__input').value = fulldateString;
+    datepicker.setAttribute('data-startvalue', startDateStr);
+    datepicker.setAttribute('data-finishvalue', finishDateStr);
   }
 
   function toggleCalender(datepicker) {
@@ -597,6 +597,14 @@
             <!-- ↑↑↑ /MODULE: DATEPICKER ↑↑↑-->
           </div>
         </div>
+        <div class="graphicWrapper">
+          <h3 class="graphicName">Clicks</h3>
+          <div class="graphic" id="clicksGraphic"></div>
+        </div>
+        <div class="graphicWrapper">
+          <h3 class="graphicName">Vievs</h3>
+          <div class="graphic" id="viewsGraphic"></div>
+        </div>
       </div>
     </main>
     <!-- ↓↓↓ MODULE: FOOTER ↓↓↓-->
@@ -609,6 +617,7 @@
       </div>
     </div>
     <!-- ↑↑↑ /MODULE: FOOTER ↑↑↑-->
+    <script defer src="../js-libs/anychart-base.min.js"></script>
     <script defer src="../js/user.js"></script>
   </body>
 </html>

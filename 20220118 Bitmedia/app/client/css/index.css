@@ -72,7 +72,7 @@ html.wjs-MobileHeightFix body {
   src: url(../fonts/MontserratRegular.otf);
 }
 @font-face {
-  font-family: bold;
+  font-family: mbold;
   src: url(../fonts/MontserratBold.otf);
 }
 * {
@@ -157,7 +157,7 @@ header .leftCol h1 {
   }
 }
 header .leftCol h1 span:first-of-type {
-  font-family: bold;
+  font-family: mbold;
 }
 header .leftCol h2 {
   max-width: 100%;
@@ -204,7 +204,7 @@ main h1 {
   line-height: 1.2em;
 }
 main h1 span:nth-of-type(2) {
-  font-family: bold;
+  font-family: mbold;
 }
 main h2 {
   text-align: center;
@@ -272,7 +272,7 @@ main .cardsWrapper .card:last-of-type {
 main .cardsWrapper .card p:first-of-type {
   color: #1A1A1A;
   font-size: 24px;
-  font-family: bold;
+  font-family: mbold;
   margin-top: 40px;
 }
 main .cardsWrapper .card p:last-of-type {

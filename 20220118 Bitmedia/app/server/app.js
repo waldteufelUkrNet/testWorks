@@ -19,14 +19,14 @@ const chalk        = require('chalk'),
       app          = express(),
       server       = new http.Server(app);
 
-      server.listen(port, host, function(err, result) {
-        if (err) {
-          throw new Error();
-        } else {
-          checkDB();
-          console.log( chalk.black.bgGreen(`server start listen ${host}:${port}` ));
-        }
-      });
+server.listen(port, host, function(err, result) {
+  if (err) {
+    throw new Error();
+  } else {
+    checkDB();
+    console.log( chalk.black.bgGreen(`server start listen ${host}:${port}` ));
+  }
+});
 
 
 // view engine setup

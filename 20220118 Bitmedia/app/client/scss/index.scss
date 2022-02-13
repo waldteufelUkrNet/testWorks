@@ -54,7 +54,7 @@ header {
       }
       line-height: 1.22em;
       span:first-of-type {
-        font-family: bold;
+        font-family: mbold;
       }
     }
     h2 {
@@ -98,7 +98,7 @@ main {
     max-width: 500px;
     line-height: 1.2em;
     span:nth-of-type(2) {
-      font-family: bold;
+      font-family: mbold;
     }
   }
   h2 {
@@ -146,7 +146,7 @@ main {
         &:first-of-type {
           color: #1A1A1A;
           font-size: 24px;
-          font-family: bold;
+          font-family: mbold;
           margin-top: 40px;
         }
         &:last-of-type {
